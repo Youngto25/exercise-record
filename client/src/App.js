@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import { Input, Select, Button } from "antd";
-import styles from "./App.less";
+import "./App.less";
 import request from "./Utils/request";
 
 const { Option } = Select;
@@ -38,28 +38,33 @@ class App extends Component {
   render() {
     let { type } = this.state;
     return (
-      <div className={styles.wrapper}>
-        <Select
-          value={type}
-          style={{ width: 300 }}
-          onChange={this.getType.bind(this)}
-        >
-          <Option value="俯卧撑">俯卧撑</Option>
-          <Option value="仰卧起坐">仰卧起坐</Option>
-        </Select>
-        <Input
-          placeholder="数量"
-          type="number"
-          style={{ width: 300 }}
-          onChange={this.getCount.bind(this)}
-        />
-        <Button
-          style={{ width: 300 }}
-          type="primary"
-          onClick={this.submit.bind(this)}
-        >
-          提交
-        </Button>
+      <div className="main">
+        <div className="container">
+          <div className="title">Keep</div>
+          <div className="wrapper">
+            <Select
+              value={type}
+              style={{ width: 300 }}
+              onChange={this.getType.bind(this)}
+            >
+              <Option value="俯卧撑">俯卧撑</Option>
+              <Option value="仰卧起坐">仰卧起坐</Option>
+            </Select>
+            <Input
+              placeholder="数量"
+              type="number"
+              style={{ width: 300 }}
+              onChange={this.getCount.bind(this)}
+            />
+            <Button
+              style={{ width: 300 }}
+              type="primary"
+              onClick={this.submit.bind(this)}
+            >
+              提交
+            </Button>
+          </div>
+        </div>
       </div>
     );
   }
