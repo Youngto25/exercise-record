@@ -11,6 +11,13 @@ class UserController {
     let vo = await User.query().fetch();
     return vo;
   }
+  async show({ request, params, response }) {
+    let vo = await User.find(1);
+    if (!vo) {
+      throw { error: 1000, message: "没有此记录" };
+    }
+    response.json(vo);
+  }
 }
 
 module.exports = UserController;

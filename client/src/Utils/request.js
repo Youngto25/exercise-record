@@ -2,11 +2,17 @@ import axios from "axios";
 
 async function request(method, url, payload) {
   let ret = await axios({
-    method: "get",
-    url: "http://127.0.0.1:3333/client/record",
+    method: method,
+    url: `http://127.0.0.1:3333/client/${url}`,
+    data: payload,
   });
-  console.log("ret", ret);
-  return { method, url, payload };
+  let result;
+  if (ret.status === 200) {
+    result = ret.data;
+  } else {
+    console.long("status", ret);
+  }
+  return result;
 }
 
 export default request;

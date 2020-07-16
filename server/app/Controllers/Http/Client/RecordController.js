@@ -18,7 +18,17 @@ class RecordController {
   }
   async store({ request, response }) {
     let { count, type, userID = 1 } = request.all();
+    let user = await User.find(userID);
+    if (!user) {
+      throw { error: 1001, message: "没有该用户" };
+    }
     let vo = await Record.create({ count, type, userID });
+    if (type === "俯卧撑") {
+      user.fCount += count;
+    } else {
+      user.yCount += count;
+    }
+    await user.save();
     response.json(vo);
   }
   async destroy({ request, params, response }) {
